@@ -73,11 +73,15 @@ public class DateOperation {
 	    return result;
 	}
 	
-	public DateCheck addDays(DateCheck d1, int days)
+	public DateCheck addDays(DateCheck d, int days)
 	{
-		return daysToDate(totalDays(d1)+days);
+		return daysToDate(totalDays(d)+days);
 	}
-
+	
+	/*public DateCheck addMonths(DateCheck d, int months)
+	{
+		
+	}*/
 	public void compareDates(DateCheck d1, DateCheck d2) {
 		int t1 = totalDays(d1);
 		int t2 = totalDays(d2);
