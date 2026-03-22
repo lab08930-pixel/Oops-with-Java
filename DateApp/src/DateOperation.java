@@ -77,7 +77,7 @@ public class DateOperation {
 	{
 		return daysToDate(totalDays(d1)+days);
 	}
-	// Now comparing dates is incredibly easy!
+
 	public void compareDates(DateCheck d1, DateCheck d2) {
 		int t1 = totalDays(d1);
 		int t2 = totalDays(d2);
@@ -92,14 +92,5 @@ public class DateOperation {
 	        System.out.println("Difference: " + (t2 - t1) + " days.");
 	    }
 	}
-	/*public String getDayOfWeek(DateCheck d) {
-	    String[] days = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
-	    // 01/01/0001 was a Monday. 
-	    // totalDays(01/01/0001) = 1.
-	    // (1 % 7) = 1. So 1 maps to Monday.
-	    int dayIndex = totalDays(d) % 7;
-	    
-	    // Mapping: 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat, 0=Sun
-	    return days[dayIndex];*/
-	}
+
 }
