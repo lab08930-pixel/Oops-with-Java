@@ -75,13 +75,36 @@ public class DateOperation {
 	
 	public DateCheck addDays(DateCheck d, int days)
 	{
+		
 		return daysToDate(totalDays(d)+days);
 	}
 	
-	/*public DateCheck addMonths(DateCheck d, int months)
-	{
-		
-	}*/
+	public DateCheck addMonths(DateCheck d1, int monthsToAdd) {
+	    
+	    int oldDay = d1.getDay();
+	    int oldMonth = d1.getMonth();
+	    int oldYear = d1.getYear();
+
+	    
+	    int totalMonths = (oldYear * 12) + (oldMonth - 1) + monthsToAdd;
+	    int newYear = totalMonths / 12;
+	    int newMonth = (totalMonths % 12) + 1;
+
+	    
+	    int maxDaysInNewMonth = getDaysInMonth(newMonth, newYear);
+	    int newDay;
+	    
+	    if (oldDay > maxDaysInNewMonth) {
+	        newDay = maxDaysInNewMonth;
+	    } else {
+	        newDay = oldDay;
+	    }
+
+	    
+	    DateCheck result = new DateCheck();
+	    result.setDate(newDay, newMonth, newYear);
+	    return result;
+	}	
 	public void compareDates(DateCheck d1, DateCheck d2) {
 		int t1 = totalDays(d1);
 		int t2 = totalDays(d2);
@@ -96,5 +119,5 @@ public class DateOperation {
 	        System.out.println("Difference: " + (t2 - t1) + " days.");
 	    }
 	}
-
+	
 }
