@@ -80,3 +80,74 @@ These tests verify that `addDays` (moving forward) and `compareDates` (calculati
 * **If you get a Difference:** Your `totalDays` and `compareDates` are working.
 * **If the Difference is 1 but the Date is wrong:** Your leap year logic is inconsistent (one method thinks it's a leap year, the other doesn't).
 * **If the Date display looks weird:** Re-check the `setDate` validation logic.
+
+
+  To test your new menu-driven system, we need to verify that **Adding Days**, **Adding Months**, and **Comparing Dates** all work together flawlessly. 
+
+Since your current date is **March 23, 2026**, let’s use that as our starting point! 
+
+Follow this specific sequence of inputs to test every "logic gate" in your code:
+
+---
+
+### Phase 1: The "Month Pinning" Test
+This tests if your `addMonths` correctly handles February's shorter length.
+
+1.  **Initial Setup:** Enter **31 / 01 / 2026** (January 31st).
+2.  **Select Option 2 (Add Months):** Enter **1**.
+    * **Expected Result:** `28 / 02 / 2026`. 
+    * *Logic Check: It should "pin" the 31st to the 28th because Feb 31 doesn't exist.*
+3.  **Select Option 2 again:** Enter **1**.
+    * **Expected Result:** `28 / 03 / 2026`.
+    * *Logic Check: It stays on the 28th because that is the new current day.*
+
+---
+
+### Phase 2: The "Big Jump" Test
+This verifies your $O(1)$ math for large month additions.
+
+1.  **Select Option 4 (Reset):** Enter **22 / 03 / 2026**.
+2.  **Select Option 2 (Add Months):** Enter **573**.
+    * **Expected Result:** `22 / 12 / 2073`.
+    * *Logic Check: This confirms your `totalMonths / 12` logic spans decades correctly.*
+
+---
+
+### Phase 3: The "Year Rollover" Test
+This ensures the year increments when days cross the December 31st boundary.
+
+1.  **Select Option 4 (Reset):** Enter **30 / 12 / 2023**.
+2.  **Select Option 1 (Add Days):** Enter **2**.
+    * **Expected Result:** `01 / 01 / 2024`.
+    * *Logic Check: Tests if the month and year both increment at the same time.*
+
+---
+
+### Phase 4: The "Integration" Test
+This checks if `addDays` and `compareDates` are synchronized.
+
+1.  **Select Option 4 (Reset):** Enter **01 / 01 / 2024**.
+2.  **Select Option 1 (Add Days):** Enter **366**.
+    * **Expected Result:** `01 / 01 / 2025` (Since 2024 is a leap year).
+3.  **Select Option 3 (Compare):** Enter **01 / 01 / 2024**.
+    * **Expected Result:** `Difference: 366 days`.
+    * *Logic Check: If the difference is exactly 366, your leap year math is identical in both classes.*
+
+---
+
+### Phase 5: The "Century Skip" Test
+The ultimate test for your `% 100` rule.
+
+1.  **Select Option 4 (Reset):** Enter **28 / 02 / 2100**.
+2.  **Select Option 1 (Add Days):** Enter **1**.
+    * **Expected Result:** `01 / 03 / 2100`.
+    * *Logic Check: If it says `29/02/2100`, your century skip logic is failing.*
+
+---
+
+### Troubleshooting Tips:
+* **Infinite Loop?** Make sure you have `break;` at the end of every `case` in your switch statement.
+* **Wrong Year?** Check if you are using `oldYear` or `newYear` in your `addMonths` return.
+* **Validation Error?** If your `setDate` rejects a valid date (like a leap day), double-check your `isLeap` method's logic.
+
+**How did Phase 1 (The January to February pin) turn out on your console?**
