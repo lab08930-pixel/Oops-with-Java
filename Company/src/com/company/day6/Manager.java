@@ -1,3 +1,4 @@
+package com.company.day6;
 
 public class Manager extends Employee {
 

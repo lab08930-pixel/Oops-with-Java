@@ -1,3 +1,4 @@
+package com.company.day6;
 public abstract class Employee {
 	protected String name;
 	protected String address;

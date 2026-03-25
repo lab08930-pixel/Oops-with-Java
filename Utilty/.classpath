@@ -6,6 +6,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="/CalculatorApp/bin"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

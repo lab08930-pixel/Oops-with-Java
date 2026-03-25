@@ -1,5 +1,6 @@
+package com.cdac;
 public class ConsoleInput {
-	static String getString() {
+	public static String getString() {
 		try {
 			byte[] input1 = new byte[100];
 			int leng = System.in.read(input1);
@@ -17,11 +18,11 @@ public class ConsoleInput {
 		return null;
 	}
 	
-	static int getInt() {
+	public static int getInt() {
 		return Integer.parseInt(getString());
 	}
 
-	static float getFloat() {
+	public static float getFloat() {
 		return Float.parseFloat(getString());
 	}
 }
