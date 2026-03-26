@@ -24,6 +24,7 @@ public class Engineer extends Employee {
 	public String display() {
 		StringBuffer sb = new StringBuffer(super.display());
 		sb.append(", OverTime: ").append(overTime);
+		sb.append(", Total Salary: ").append(basicSalary + overTime);
 		return sb.toString();
 	}
 	

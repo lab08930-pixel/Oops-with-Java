@@ -27,6 +27,7 @@ public class SalesPerson extends Employee {
 	public String display() {
 		StringBuffer sb = new StringBuffer(super.display());
 		sb.append(", Commision: ").append(commission);
+		sb.append(", Total Salary: ").append(basicSalary + commission);
 		return sb.toString();
 	}
 	

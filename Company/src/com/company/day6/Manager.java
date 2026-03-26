@@ -26,6 +26,7 @@ public class Manager extends Employee {
 	public String display() {
 		StringBuffer sb = new StringBuffer(super.display());
 		sb.append(", HRA: ").append(hra);
+		sb.append(", Total Salary: ").append(basicSalary + hra);
 		return sb.toString();
 	}
 	
