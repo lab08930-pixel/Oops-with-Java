@@ -1,4 +1,4 @@
-package com.cdac;
+package src.org.oops.utils;
 public class ConsoleInput {
 	public static String getString() {
 		try {

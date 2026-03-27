@@ -1,12 +1,12 @@
-package org.oops.utils;
+package src.org.oops.utils;
 
-class Node {
-	Object data;
+class Node<T> {
+	T data;
 	
-	Node previous;
-	Node next;
+	Node<T> previous;
+	Node<T> next;
 	
-	public Node(Object tmp) 
+	public Node(T tmp) 
 	{
 		data = tmp;
 	}

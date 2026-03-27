@@ -1,15 +1,15 @@
-package org.oops.utils;
+package src.org.oops.utils;
 
-public class LinkedList {
+public class LinkedList<T> {
 	
-	Node start;
-	Node end;
-	Node current;
-	public int maxCount;
+	Node<T> start;
+	Node<T> end;
+	Node<T> current;
+	int maxCount;
 	
-	public void add(Object data)
+	public void add(T data)
 	{
-		Node tmpNode = new Node(data);
+		Node<T> tmpNode = new Node<>(data);
 		
 		if(start==null)
 		{
@@ -23,11 +23,12 @@ public class LinkedList {
 		}
 		maxCount++;
 	}
-	public void delete(int index)
+	public void delete(int index) throws LinkedListException
 	{
-		if((start==null) || index>maxCount-1)
+		if((start==null) || index>maxCount-1 || index <0)
 		{
-			return;
+			throw new LinkedListException("Invalid Index or no nodes");
+			
 		}
 		else if(index==0)
 		{
@@ -41,7 +42,7 @@ public class LinkedList {
 		}
 		else
 		{
-			Node tmpNode= start;
+			Node<T> tmpNode= start;
 			for(int iTmp=0; iTmp<index; iTmp++, tmpNode= tmpNode.next);
 			
 			tmpNode.previous.next = tmpNode.next;
@@ -51,14 +52,14 @@ public class LinkedList {
 		}
 		maxCount --;
 	}
-	public void insert(int index, Object data)
+	public void insert(int index, T data)
 	{
 	   if(index < 0 || index > maxCount)
 	        return;
 	   
 	   if(index == 0)
 	    {
-	        Node tmpNode = new Node(data);
+	        Node<T> tmpNode = new Node<>(data);
 	        tmpNode.next = start;
 	        start.previous = tmpNode;
 	        start = tmpNode;
@@ -72,12 +73,12 @@ public class LinkedList {
 	        return;
 	    }
 
-	    Node tmpNode = new Node(data);
+	    Node<T> tmpNode = new Node<>(data);
 
-	    Node current = start;
+	    Node<T> current = start;
 	    for(int i = 0; i < index; i++, current = current.next);
 
-	    Node prevNode = current.previous;
+	    Node<T> prevNode = current.previous;
 
 	    prevNode.next = tmpNode;      // prev → new node
 	    tmpNode.previous = prevNode;  // new node ← prev
@@ -86,50 +87,52 @@ public class LinkedList {
 
 	    maxCount++;
 	}
-	public Object getNode(int index)
+	public T getNode(int index)	throws LinkedListException
 	{
 	    if(start == null || index > maxCount - 1 || index < 0)
-	        return null;
+	        throw new LinkedListException("Empty List");
 
-	    Node tmpNode = start;
+	    Node<T> tmpNode = start;
 	    for(int i = 0; i < index; i++, tmpNode = tmpNode.next);
 
 	    current = tmpNode;
 	    return current.data;
 	}
-	public Object getFirst()
+	public T getFirst() throws LinkedListException
 	{
 		if(start==null)
 		{
-			return null;
+			throw new LinkedListException("Empty List");
 		}
+		
 		current=start;
 		return current.data;
 	}
-	public Object getLast()
+	public T getLast() throws LinkedListException
 	{
 		if(start==null)
 		{
-			return null;
+			throw new LinkedListException("Empty List");
 		}
 		current=end;
 		return current.data;
 	}
 	
-	public Object getPrevious() 
+	public T getPrevious() throws LinkedListException
 	{
 		if (start==null || current == start)
-			return null;
+			throw new LinkedListException("Empty List");
 		current = current.previous;
 			return current.data;
 	}
-	public Object getNext() {
+	public T getNext() throws LinkedListException
+	{
 		if (start == null || current == end)
-			return null;
+			throw new LinkedListException("Already At Exception");
 		current = current.next;
 			return current.data;
 	}
-	public Object getMaxCount()
+	public int getMaxCount()
 	{
 		return maxCount;
 	}
